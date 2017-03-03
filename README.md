@@ -1,13 +1,10 @@
-![demo](https://dl.dropboxusercontent.com/u/40274020/fattest-cat.gif)
+A fork of [lexiross/fattest-cat]()
 
-Some cats are born fat, some achieve fatness, others have fatness thrust upon them. You can find all of them at the San Francisco SPCA using this tool.
-
-## Install
+I was really inspired by her code and thought that some might be motivated to adopt based on age instead of weight.
 
 Compatible with node 6+
 
-`npm install -g fattest-cat`
-
 ## Usage
+Clone the repo, `npm install` for dependencies, then type:
 
-`$ fattest-cat`
+`$ node index.js`
