@@ -1,24 +1,24 @@
 {
-  "name": "fattest-cat",
+  "name": "oldest-cat",
   "version": "1.0.8",
-  "description": "Find fattest cat currently up for adoption at SF SPCA.",
+  "description": "Find oldest cat currently up for adoption at SF SPCA.",
   "bin": "index.js",
   "main": "index.js",
   "engines": {
     "node": ">=6.0.0"
   },
-  "repository": "lexiross/fattest-cat",
+  "repository": "mandeldl/oldest-cat",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Lexi Ross",
+  "author": "Lexi Ross, David Mandel",
   "keywords": [
     "cat",
     "cats",
     "spca",
-    "fat",
-    "fatter",
-    "fattest",
+    "old",
+    "older",
+    "oldest",
     "meow"
   ],
   "license": "ISC",
