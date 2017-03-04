@@ -49,13 +49,12 @@ fetchCats()
         const $ = cheerio.load(catPage);
         const name = $(".field-name-title h1").text();
         const age = $(".field-name-field-animal-age .field-item").text().trim();
-        // const weight = $(".field-name-field-animal-weight .field-item").text();
         const years = Number(/(\d+)\D*(\d+)/.exec(age)[1]);
         const months = Number(/(\d+)\D*(\d+)/.exec(age)[2]);
-        // const oz = /(\d+)oz\./.test(weight) ? Number(/(\d+)oz\./.exec(weight)[1]) : 0;
+        const ageString = () => `${years} ${ (years > 1) ? 'years' : 'year' } ${ (months > 0) ? (months>1) ? months + ' months' : months + ' month' : '' }`;
         const isFemale = $(".field-name-field-gender .field-item").text().trim() === "Female";
 
-        console.log(`Guessing %s's age: ${years} years ${months} months`, colors.green(name));
+        console.log(`Guessing %s's age: ${ageString()}`, colors.green(name));
         return {name, years, months, isFemale, url}
       })
       // Null for cats that cannot be parsed.
