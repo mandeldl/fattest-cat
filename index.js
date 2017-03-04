@@ -38,6 +38,8 @@ colors.setTheme({
   output: ["yellow", "bold"],
 });
 
+const ageString = (y, m) => `${y} ${ (y > 1) ? 'years' : 'year' } ${ (m > 0) ? (m>1) ? m + ' months' : m + ' month' : '' }`;
+
 fetchCats()
   .then(uniq) // NO DOUBLE CATS
   .tap((cats) => console.log(`Cat information system accessed. ${cats.length} cats found. Beginning age-guessing process...`))
@@ -51,10 +53,9 @@ fetchCats()
         const age = $(".field-name-field-animal-age .field-item").text().trim();
         const years = Number(/(\d+)\D*(\d+)/.exec(age)[1]);
         const months = Number(/(\d+)\D*(\d+)/.exec(age)[2]);
-        const ageString = () => `${years} ${ (years > 1) ? 'years' : 'year' } ${ (months > 0) ? (months>1) ? months + ' months' : months + ' month' : '' }`;
         const isFemale = $(".field-name-field-gender .field-item").text().trim() === "Female";
 
-        console.log(`Guessing %s's age: ${ageString()}`, colors.green(name));
+        console.log(`Guessing %s's age: ${ageString(years, months)}`, colors.green(name));
         return {name, years, months, isFemale, url}
       })
       // Null for cats that cannot be parsed.
@@ -69,7 +70,7 @@ fetchCats()
         oldestCat = cat;
       }
     });
-    console.log(`The oldest cat is ${colors.green.underline(oldestCat.name)}. ${(oldestCat.isFemale ? "She" : "He")} is ${oldestCat.years} years and ${oldestCat.months} months old.`.output);
+    console.log(`The oldest cat is ${colors.green.underline(oldestCat.name)}. ${(oldestCat.isFemale ? "She" : "He")} is ${ageString(oldestCat.years, oldestCat.months)}old.`.output);
     setTimeout(() => console.log("Opening cat profile..."), 2000);
     setTimeout(() => opener(oldestCat.url), 4000);
   });
