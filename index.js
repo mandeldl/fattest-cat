@@ -4,7 +4,7 @@ const request         = require("request-promise");
 const opener          = require("opener");
 const Promise         = require("bluebird");
 const cheerio         = require("cheerio");
-const {uniq, compact} = require("lodash");
+const {uniq, compact, maxBy} = require("lodash");
 const colors          = require("colors");
 
 const SFSPCA_BASE = "https://www.sfspca.org"
@@ -64,12 +64,7 @@ fetchCats()
   // Filter out unparsable cats.
   .then(compact)
   .then((cats) => {
-    let oldestCat = {years: 0, months: 0};
-    cats.forEach((cat) => {
-      if (cat.years > oldestCat.years || (cat.years === oldestCat.years && cat.months > oldestCat.months)) {
-        oldestCat = cat;
-      }
-    });
+    let oldestCat = maxBy(cats, (cat) => cat.years*12+cat.months);
     console.log(`The oldest cat is ${colors.green.underline(oldestCat.name)}. ${(oldestCat.isFemale ? "She" : "He")} is ${ageString(oldestCat.years, oldestCat.months)}old.`.output);
     setTimeout(() => console.log("Opening cat profile..."), 2000);
     setTimeout(() => opener(oldestCat.url), 4000);
