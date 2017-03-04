@@ -38,7 +38,7 @@ colors.setTheme({
   output: ["yellow", "bold"],
 });
 
-const ageString = (y, m) => `${y} ${ (y > 1) ? 'years' : 'year' } ${ (m > 0) ? (m>1) ? m + ' months' : m + ' month' : '' }`;
+const ageString = (y, m) => `${y} ${ (y > 1) ? "years" : "year" } ${ (m > 0) ? (m > 1) ? `${m} months` : `${m} month` : "" }`;
 
 fetchCats()
   .then(uniq) // NO DOUBLE CATS
@@ -64,7 +64,7 @@ fetchCats()
   // Filter out unparsable cats.
   .then(compact)
   .then((cats) => {
-    let oldestCat = maxBy(cats, (cat) => cat.years*12+cat.months);
+    const oldestCat = maxBy(cats, (cat) => cat.years * 12 + cat.months);
     console.log(`The oldest cat is ${colors.green.underline(oldestCat.name)}. ${(oldestCat.isFemale ? "She" : "He")} is ${ageString(oldestCat.years, oldestCat.months)}old.`.output);
     setTimeout(() => console.log("Opening cat profile..."), 2000);
     setTimeout(() => opener(oldestCat.url), 4000);
