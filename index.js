@@ -43,7 +43,7 @@ const ageString = (y, m) => `${y} ${ (y > 1) ? "years" : "year" } ${ (m > 0) ? (
 fetchCats()
   .then(uniq) // NO DOUBLE CATS
   .tap((cats) => console.log(`Cat information system accessed. ${cats.length} cats found. Beginning age-guessing process...`))
-  .map((url) => 
+  .map((url) => {
     return request.get(url)
       // SPCA sometimes returns 403s for some cats, ignore this.
       .catch((err) => err)
